@@ -2,21 +2,27 @@ import React,{useEffect,useState} from 'react';
 import './App.less';
 import _ from 'lodash'
 import {Menu, MenuTheme} from 'antd'
+import {Switch,Route, Link} from 'react-router-dom'
+import HomePage from './page/HomePage'
+import ManagePage from './page/ManagePage'
 
 interface menuType{
     name:string,
     id:string,
+    routeName?:string,
     children?:menuType[]
 }
 
 const meunList:menuType[] = [
   {
     name:'首页',
-    id:'sy'
+    id:'sy',
+    routeName:'home'
   },
   {
     name:'管理员',
-    id:'gly'
+    id:'gly',
+    routeName:'manage'
   },
   {
     name:'普通用户',
@@ -41,6 +47,18 @@ const App = () => {
     setTheme('dark')
   },[menuTheme])
 
+  const goToPage = (routeName:string):void => {
+    if(_.isEmpty(routeName)){
+      return
+    }else{
+      if(routeName === 'home'){
+        console.log()
+      }else{
+
+      }
+    }
+  }
+
   return (
     <div className="App">
       <Menu 
@@ -52,7 +70,14 @@ const App = () => {
           meunList.map((it,index) => {
             if(_.isUndefined(it.children)){
               return (
-                <Menu.Item key={it.id || index}>{it.name || ''}</Menu.Item>
+                <Menu.Item 
+                    key={it.id || index}
+                    // onClick={() => {
+                    //   goToPage(it.routeName || '')
+                    // }}
+                >
+                  <Link to={`/${it.routeName && it.routeName}`}>{it.name || ''}</Link>
+                </Menu.Item>
               )
             }else{
               return (
@@ -72,6 +97,12 @@ const App = () => {
           })
         }
       </Menu>
+      <Switch>
+        <Route path='/' exact component={HomePage}/>
+        <Route path='/home' exact component={HomePage}/>
+        <Route path='/manage' exact component={ManagePage}/>
+      </Switch>
+
     </div>
   );
 }
