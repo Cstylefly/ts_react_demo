@@ -44,3 +44,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+// cd mock && hs -p 4000 -a localhost    进入到mock文件夹 然后运行http-server 端口号为4000 服务名称指定为localhost

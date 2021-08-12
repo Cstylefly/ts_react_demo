@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
+import Hoc from '../test/Hoc'
 
 const HomePage = () => {
     return (
         <div>
-            home
+            <Hoc loading={false}/>
         </div>
     )
 }
